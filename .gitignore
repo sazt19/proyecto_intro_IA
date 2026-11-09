@@ -1,0 +1,23 @@
+# Secretos (NUNCA subir)
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Entornos y caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Datos crudos pesados (los procesados sí se suben como plan B)
+data/raw/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Enunciado del curso (material del profesor)
+EAFIT_Proyecto_Final_IA.pdf
