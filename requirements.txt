@@ -1,0 +1,10 @@
+numpy>=1.26
+# Versiones fijadas: las más nuevas de pandas/pyarrow son bloqueadas por el
+# Control de aplicaciones de Windows en algunos equipos
+pandas==2.2.3
+pyarrow==19.0.1
+requests>=2.31
+python-dotenv>=1.0
+openai>=1.40
+streamlit>=1.40
+plotly>=5.24
