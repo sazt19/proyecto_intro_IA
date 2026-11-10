@@ -16,6 +16,17 @@ from src.config import DOCS_DIR
 
 CORPUS = DOCS_DIR / "fuentes.json"
 
+# Palabras vacías en español (ya normalizadas, sin tildes): se ignoran para que
+# coincidencias en "de", "el", "que"... no hagan parecer relevante un documento
+STOPWORDS = sorted(set("""
+a al algo algun alguna algunas alguno algunos ante antes asi aun bajo bien cada como con
+cual cuales cuando cuanto de del desde donde dos e el ella ellas ellos en entre era es esa
+esas ese eso esos esta estaba estan estar estas este esto estos fue fueron ha hay hace hacer
+hago han hasta la las le les lo los mas me mi mis mucho muy ni no nos o otra otro para pero
+poco por porque puede pueden que quien se segun ser si sido sin sobre son su sus tambien
+tan te tener tengo tiene tienen todo todos tu un una unas uno unos y ya yo dime decir dice
+""".split()))
+
 
 def _normalizar(texto: str) -> str:
     """Normaliza mayúsculas, tildes y espacios."""
@@ -53,6 +64,7 @@ def _indice():
         ngram_range=(1, 2),
         sublinear_tf=True,
         strip_accents="unicode",
+        stop_words=STOPWORDS,
         max_df=1.0,
     )
 
