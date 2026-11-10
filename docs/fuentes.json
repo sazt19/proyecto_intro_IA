@@ -1,0 +1,59 @@
+[
+    {
+      "id": "res2254-limite",
+      "titulo": "Resolución 2254 de 2017",
+      "seccion": "Artículo 2, Tabla 1",
+      "url": "https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-2254-de-2017.pdf",
+      "texto": "La Resolución 2254 de 2017 establece los niveles máximos permisibles de contaminantes en el aire ambiente en Colombia. Para PM2.5, el nivel máximo permisible de 24 horas es 37 microgramos por metro cúbico y el nivel anual es 25 microgramos por metro cúbico. Estos son valores regulatorios colombianos, distintos de los valores guía recomendados por la Organización Mundial de la Salud."
+    },
+    {
+      "id": "res2254-alertas",
+      "titulo": "Resolución 2254 de 2017",
+      "seccion": "Artículos 9 y 10, Tabla 4",
+      "url": "https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-2254-de-2017.pdf",
+      "texto": "La Resolución 2254 de 2017 establece niveles de prevención, alerta y emergencia para contaminación atmosférica. Para PM2.5 durante 24 horas, los rangos son prevención de 38 a 55 microgramos por metro cúbico, alerta de 56 a 150 y emergencia desde 151. La declaratoria oficial corresponde a las autoridades competentes. Una predicción del modelo académico no equivale a una alerta ambiental oficial."
+    },
+    {
+      "id": "res2254-monitoreo",
+      "titulo": "Resolución 2254 de 2017",
+      "seccion": "Artículo 2 y artículo 6",
+      "url": "https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-2254-de-2017.pdf",
+      "texto": "La evaluación del cumplimiento de los niveles máximos permisibles de contaminantes se realiza en cada punto de monitoreo. No se deben promediar concentraciones de diferentes estaciones para determinar el cumplimiento normativo. Ante excedencias, las autoridades ambientales deben comunicar la información a las autoridades correspondientes."
+    },
+    {
+      "id": "oms-pm25",
+      "titulo": "OMS: Directrices mundiales de calidad del aire",
+      "seccion": "Valores guía para PM2.5, 2021",
+      "url": "https://www.who.int/publications/i/item/9789240034228",
+      "texto": "Las directrices mundiales de calidad del aire de la Organización Mundial de la Salud de 2021 recomiendan una concentración media anual de PM2.5 de 5 microgramos por metro cúbico y una concentración media de 24 horas de 15 microgramos por metro cúbico. Estos valores son recomendaciones sanitarias y no equivalen a los límites legales colombianos."
+    },
+    {
+      "id": "oms-salud",
+      "titulo": "OMS: Directrices mundiales de calidad del aire",
+      "seccion": "Impactos sobre la salud",
+      "url": "https://www.who.int/publications/i/item/9789240034228",
+      "texto": "La exposición a contaminación del aire está asociada con efectos adversos sobre la salud. Las partículas finas PM2.5 pueden penetrar profundamente en el sistema respiratorio. La exposición se asocia con enfermedades cardiovasculares y respiratorias, incluyendo accidente cerebrovascular, cardiopatía isquémica, enfermedad pulmonar obstructiva crónica y cáncer de pulmón. La información es de carácter general y no reemplaza una valoración médica."
+    },
+    {
+      "id": "amva-poeca",
+      "titulo": "Área Metropolitana del Valle de Aburrá",
+      "seccion": "PIGECA y POECA",
+      "url": "https://www.metropol.gov.co",
+      "texto": "El Plan Integral de Gestión de la Calidad del Aire, PIGECA, establece estrategias de largo plazo para mejorar la calidad del aire del Valle de Aburrá. El Plan Operacional para Enfrentar Episodios de Contaminación Atmosférica, POECA, contempla acciones coordinadas para gestionar episodios de contaminación y reducir la exposición de la población. Las medidas específicas dependen de las decisiones de las autoridades competentes."
+    },
+    {
+      "id": "amva-factores",
+      "titulo": "Área Metropolitana del Valle de Aburrá",
+      "seccion": "Factores que influyen en la contaminación",
+      "url": "https://www.metropol.gov.co",
+      "texto": "La calidad del aire en el Valle de Aburrá está relacionada con emisiones del transporte y de actividades industriales, condiciones meteorológicas, características topográficas y transporte de contaminantes desde otras regiones. Las condiciones atmosféricas pueden dificultar la dispersión de contaminantes. No todos los episodios de contaminación tienen una única causa."
+    },
+    {
+      "id": "amva-prevencion",
+      "titulo": "Área Metropolitana del Valle de Aburrá",
+      "seccion": "Acciones preventivas",
+      "url": "https://www.metropol.gov.co",
+      "texto": "Durante los periodos de gestión de la calidad del aire del Valle de Aburrá se promueven acciones como movilidad sostenible, reducción de emisiones y seguimiento de información oficial. El teletrabajo y las alternativas de transporte pueden contribuir a disminuir las emisiones. Las recomendaciones concretas durante episodios de contaminación deben consultarse en los comunicados oficiales vigentes."
+    }
+  ]
+  
