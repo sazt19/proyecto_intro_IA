@@ -45,6 +45,8 @@ Se abre en `http://localhost:8501`.
 python -m src.data --download   # vuelve a descargar los datos de SIATA y Open-Meteo
 python -m src.model             # reentrena el modelo e imprime métricas vs. líneas base
 python -m src.agent "¿Cómo estará el aire mañana en Bello?"   # agente desde la terminal
+python -m src.rag "límite diario de PM2.5"                     # prueba solo el buscador RAG (sin clave)
+python -m src.evaluate          # evalúa el agente con 13 preguntas fijas -> docs/evaluacion_agente.md
 ```
 
 ## Datos
@@ -103,7 +105,21 @@ Herramientas (`src/tools.py`):
 | `list_stations()` | Lista las estaciones disponibles |
 | `get_pm25(estacion, fecha)` | PM2.5 diario medido y su categoría ICA |
 | `predict_tomorrow(estacion, fecha)` | Predicción del día siguiente con el modelo propio |
-| `search_docs(query)` | Búsqueda en normativa y guías (RAG) — *en construcción* |
+| `search_docs(query)` | Búsqueda en normativa y guías (RAG) |
+
+### RAG
+
+`src/rag.py` busca en `docs/fuentes.json` (19 fragmentos: Resolución 2254 de 2017, directrices de la
+OMS 2021, AMVA/POECA y estadísticas de los propios datos) con **TF‑IDF y similitud coseno**. Se eligió
+TF‑IDF en lugar de embeddings porque el corpus es pequeño, no requiere GPU ni descargar modelos y la app
+arranca rápido. Cada fragmento tiene título, sección y URL, que el agente usa para citar la fuente.
+
+### Evaluación del agente
+
+`python -m src.evaluate` hace 13 preguntas fijas (datos, predicción, normativa, combinadas, fecha fuera
+de rango y fuera de tema) y revisa si el agente llamó a la herramienta correcta y si citó la fuente.
+Resultado: **13/13 herramienta correcta, 12/12 citó fuente**. Detalle en
+[docs/evaluacion_agente.md](docs/evaluacion_agente.md).
 
 ## Dashboard
 
@@ -127,6 +143,10 @@ src/data.py             Descarga y limpieza (SIATA + Open-Meteo)
 src/model.py            Regresión logística propia, líneas base y métricas
 src/tools.py            Herramientas del agente
 src/agent.py            Loop agéntico con NVIDIA NIM
+src/rag.py              Búsqueda documental (TF-IDF)
+src/evaluate.py         Evaluación del agente con preguntas fijas
+docs/fuentes.json       Corpus del RAG
+docs/                   Evaluación, informe y declaración de uso de IA
 data/processed/         Datos diarios y modelo entrenado (plan B)
 ```
 
@@ -135,9 +155,9 @@ data/processed/         Datos diarios y modelo entrenado (plan B)
 - [x] Datos reales descargados y procesados
 - [x] Modelo de la Parte 1 con métrica frente a línea base
 - [x] Agente con herramientas y dashboard funcional
-- [ ] RAG sobre normativa (Res. 2254/2017, POECA AMVA, guías OMS)
-- [ ] Evaluación del agente (10–15 preguntas)
-- [ ] Notebook de EDA y modelo, informe y declaración de uso de IA
+- [x] RAG sobre normativa (Res. 2254/2017, POECA AMVA, guías OMS)
+- [x] Evaluación del agente (13 preguntas)
+- [x] Informe ([docs/informe.md](docs/informe.md)) y declaración de uso de IA ([docs/declaracion_ia.md](docs/declaracion_ia.md))
 
 ## Limitaciones
 
@@ -146,3 +166,5 @@ data/processed/         Datos diarios y modelo entrenado (plan B)
 - **La persistencia es una línea base fuerte** para el PM2.5 diario. El modelo propio no la supera en F1-macro.
 - **La meteorología es un reanálisis** (ERA5 vía Open-Meteo), no medición en la estación.
 - **Disponibilidad de modelos en NVIDIA:** el catálogo cambia. Algunos modelos que aparecen en la lista no responden o dan error 404.
+- **RAG léxico y corpus pequeño:** TF‑IDF busca por palabras, no por significado; los fragmentos son resúmenes escritos por el equipo a partir de las fuentes citadas, no los documentos completos.
+- **El LLM puede cometer errores menores:** en la evaluación, por ejemplo, el agente confundió una vez la fecha predicha (dijo 12 de abril en lugar de 11) y en otra respuesta correcta añadió de más la frase de "no puedo responder".
