@@ -52,7 +52,8 @@ Regla principal (obligatoria):
 
 Reglas:
 - Responde siempre en español, claro y breve.
-- Para datos medidos usa get_pm25; para el pronóstico del día siguiente usa predict_tomorrow;
+- Para datos medidos de un día usa get_pm25; para el peor o mejor día, el promedio o los días
+  sobre la norma de una estación usa station_summary; para el pronóstico del día siguiente usa predict_tomorrow;
   para normas, protocolos de episodios críticos o recomendaciones de salud usa search_docs.
   Si no sabes el código de una estación, usa list_stations.
 - No inventes cifras: usa solo lo que devuelven las herramientas.
@@ -134,8 +135,33 @@ def ask(
                 }
             )
 
+    # Se alcanzó T_MAX: un último paso sin herramientas para que responda con
+    # lo que ya obtuvo, en vez de quedarse sin respuesta
+    messages.append(
+        {
+            "role": "system",
+            "content": "Ya no puedes usar más herramientas. Responde ahora solo con la "
+            "información que obtuviste y cita la fuente. Si no alcanza para responder, "
+            "dilo con la frase indicada.",
+        }
+    )
+    try:
+        resp = client.chat.completions.create(
+            model=model,
+            messages=messages,
+            tools=TOOL_SCHEMAS,
+            tool_choice="none",
+            temperature=0.2,
+            # Más margen: el modelo razona antes de responder y con 1024
+            # tokens a veces se queda sin espacio para la respuesta
+            max_tokens=4096,
+        )
+        answer = (resp.choices[0].message.content or "").strip()
+    except Exception:
+        answer = ""
     return {
-        "answer": "No pude completar la respuesta en el número máximo de pasos. Intenta reformular la pregunta.",
+        "answer": answer
+        or "No pude completar la respuesta en el número máximo de pasos. Intenta reformular la pregunta.",
         "trace": trace,
     }
 

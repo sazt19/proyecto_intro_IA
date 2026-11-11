@@ -83,6 +83,32 @@ def get_pm25(estacion: str, fecha: str | None = None) -> dict:
     }
 
 
+def station_summary(estacion: str) -> dict:
+    codigo = _resolve_station(estacion)
+    df = _daily()
+    df = df[df["codigo"] == codigo]
+    peor = df.loc[df["pm25"].idxmax()]
+    mejor = df.loc[df["pm25"].idxmin()]
+    return {
+        "estacion": codigo,
+        "periodo": f"{df['fecha'].min():%Y-%m-%d} a {df['fecha'].max():%Y-%m-%d}",
+        "dias_validos": int(len(df)),
+        "pm25_promedio_ugm3": round(float(df["pm25"].mean()), 1),
+        "peor_dia": {
+            "fecha": f"{peor['fecha']:%Y-%m-%d}",
+            "pm25_promedio_24h_ugm3": round(float(peor["pm25"]), 1),
+            "categoria_ica": ica_category(peor["pm25"])[0],
+        },
+        "mejor_dia": {
+            "fecha": f"{mejor['fecha']:%Y-%m-%d}",
+            "pm25_promedio_24h_ugm3": round(float(mejor["pm25"]), 1),
+            "categoria_ica": ica_category(mejor["pm25"])[0],
+        },
+        "dias_sobre_norma_37": int((df["pm25"] > 37).sum()),
+        "fuente": FUENTE_DATOS,
+    }
+
+
 def predict_tomorrow(estacion: str, fecha: str | None = None) -> dict:
     codigo = _resolve_station(estacion)
     f = _features()
@@ -114,6 +140,7 @@ def search_docs(query: str, k: int = 4) -> dict:
 TOOLS = {
     "list_stations": list_stations,
     "get_pm25": get_pm25,
+    "station_summary": station_summary,
     "predict_tomorrow": predict_tomorrow,
     "search_docs": search_docs,
 }
@@ -141,6 +168,21 @@ TOOL_SCHEMAS = [
             "parameters": {
                 "type": "object",
                 "properties": {"estacion": _ESTACION, "fecha": _FECHA},
+                "required": ["estacion"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "station_summary",
+            "description": (
+                "Resumen histórico de una estación: peor y mejor día (fecha y PM2.5), "
+                "promedio y número de días sobre la norma de 37 µg/m³."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {"estacion": _ESTACION},
                 "required": ["estacion"],
             },
         },

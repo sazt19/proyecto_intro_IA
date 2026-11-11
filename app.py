@@ -3,7 +3,6 @@
 Ejecutar: python -m streamlit run app.py
 """
 
-import json
 
 import pandas as pd
 import plotly.express as px
@@ -428,37 +427,6 @@ with tab_chat:
                 st.markdown(
                     m["content"]
                 )
-
-                # Mostrar herramientas utilizadas
-                for t in m.get("trace", []):
-
-                    nombre = t.get(
-                        "tool",
-                        "herramienta",
-                    )
-
-                    args = t.get(
-                        "args",
-                        "{}",
-                    )
-
-                    with st.expander(
-                        f"🔧 {nombre}({args})"
-                    ):
-
-                        st.caption(
-                            "Resultado devuelto por la herramienta"
-                        )
-
-                        st.code(
-                            json.dumps(
-                                t.get("result", {}),
-                                ensure_ascii=False,
-                                indent=2,
-                                default=str,
-                            ),
-                            language="json",
-                        )
 
     # ----------------------------------------------
     # CAMPO DE ESCRITURA DEBAJO DEL HISTORIAL

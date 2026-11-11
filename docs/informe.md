@@ -42,7 +42,7 @@ F1-macro. Su ventaja es que entrega probabilidades, que el agente usa para comun
 - **Loop agéntico manual** (sin frameworks) sobre la API de NVIDIA NIM compatible con OpenAI, con el modelo
   `nvidia/nemotron-3.5-lightning-30b-a3b`. Máximo T_max = 5 pasos.
 - **Manejo de errores:** si una herramienta falla, el error vuelve al modelo como observación y la app no se cae.
-- **Herramientas:** `list_stations`, `get_pm25`, `predict_tomorrow` (usa el modelo de la Parte 1) y `search_docs`.
+- **Herramientas:** `list_stations`, `get_pm25`, `station_summary`, `predict_tomorrow` (usa el modelo de la Parte 1) y `search_docs`.
 - **RAG:** `search_docs` busca en 19 fragmentos (Resolución 2254 de 2017, OMS 2021, AMVA/POECA y
   estadísticas del proyecto) con TF-IDF y similitud coseno, filtrando palabras vacías del español. Se eligió
   TF-IDF porque el corpus es pequeño y no requiere GPU ni descargar modelos.
@@ -58,7 +58,7 @@ probabilidades y las complementa con la normativa recuperada por el RAG.
 Streamlit con tres pestañas:
 
 - **Dashboard:** mapa de estaciones coloreado por ICA, serie de tiempo con franjas ICA y la norma de 37 µg/m³, y la predicción de mañana.
-- **Agente:** chat que muestra las herramientas usadas y lo que devolvió cada una.
+- **Agente:** chat con el agente; muestra solo la respuesta final, con sus fuentes citadas.
 - **Modelo:** métricas y matrices de confusión.
 
 El usuario elige la estación, la fecha y el rango de la serie.

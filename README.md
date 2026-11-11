@@ -104,6 +104,7 @@ Herramientas (`src/tools.py`):
 |---|---|
 | `list_stations()` | Lista las estaciones disponibles |
 | `get_pm25(estacion, fecha)` | PM2.5 diario medido y su categoría ICA |
+| `station_summary(estacion)` | Resumen histórico: peor y mejor día, promedio y días sobre la norma |
 | `predict_tomorrow(estacion, fecha)` | Predicción del día siguiente con el modelo propio |
 | `search_docs(query)` | Búsqueda en normativa y guías (RAG) |
 
@@ -129,7 +130,7 @@ Resultado: **13/13 herramienta correcta, 12/12 citó fuente**. Detalle en
   - Mapa de estaciones coloreado por categoría ICA.
   - Serie de tiempo con las franjas ICA y la norma diaria de 37 µg/m³.
   - Predicción de mañana.
-- **Agente:** chat que muestra qué herramientas usó el agente y qué devolvió cada una.
+- **Agente:** chat con el agente; muestra solo la respuesta final, con sus fuentes citadas. Las herramientas que usa se pueden ver con `python -m src.evaluate`.
 - **Modelo:** métricas y matrices de confusión del modelo propio frente a la persistencia.
 
 En la barra lateral se eligen la estación, la fecha y el rango de la serie.
