@@ -6,9 +6,18 @@ Muchas personas no entienden qué significa el PM2.5 del día ni qué hacer al r
 combina datos reales de SIATA, un modelo clásico implementado por el equipo y un agente LLM con
 herramientas, todo dentro de un dashboard interactivo.
 
+**App en línea:** https://calidadairevalle.streamlit.app/
+
+**Equipo:**
+- Leidy Gallo Vargas
+- Valentina Aguilar Correa
+- Sara Zuluaga Trujillo
+
 > ⚠️ Herramienta académica. No es consejo médico ni reemplaza las alertas oficiales de SIATA / AMVA.
 
 ## Cómo correrlo
+
+Para solo usar la app no hay que instalar nada: está publicada en https://calidadairevalle.streamlit.app/. Para correrla en local:
 
 Requisitos: Python 3.10 o superior (probado con 3.12) y Git.
 
