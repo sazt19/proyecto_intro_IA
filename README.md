@@ -7,6 +7,7 @@ combina datos reales de SIATA, un modelo clásico implementado por el equipo y u
 herramientas, todo dentro de un dashboard interactivo.
 
 **App en línea:** https://calidadairevalle.streamlit.app/
+**Informe del proyecto:** [Informe_Final_IA_Valle_de_Aburra.pdf]
 
 **Equipo:**
 - Leidy Gallo Vargas
