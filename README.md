@@ -10,7 +10,7 @@ herramientas, todo dentro de un dashboard interactivo.
 
 **Informe del proyecto:** [Informe_Final_IA_Valle_de_Aburra.pdf](Informe_Final_IA_Valle_de_Aburra.pdf)
 
-**Video demostrativo:**
+**Video demostrativo:** https://youtu.be/Na4UFtufnzA
 
 **Equipo:**
 - Leidy Gallo Vargas
